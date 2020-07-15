@@ -1,0 +1,115 @@
+/* Corporate color */
+:root {
+	--primary-color: #e42313;
+	--secondary-color: #1d1d1b;
+	--tertiary-color: #706f6f;
+}
+
+/* Spacing */
+.v-space {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.mx-auto {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Z utilities */
+.z-index-top {
+	z-index: 999;
+}
+
+.z-depth-light {
+	box-shadow: 0 0px 5px rgba(9, 9, 9, .25);
+}
+
+/* Additional text utilities */
+.text-semibold {
+	font-weight: 500;
+}
+
+.text-bold {
+	font-weight: bold;
+}
+
+.text-heading {
+	color: var(--primary-color);
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding-bottom: 20px;
+	border-bottom: 2px solid var(--tertiary-color);
+}
+
+.text-base {
+	font-size: 1rem;
+}
+
+.text-medium {
+	font-size: 1.2rem;
+}
+
+.text-large {
+	font-size: 1.5rem;
+}
+
+.text-small {
+	font-size: .9rem;
+}
+
+.text-link {
+	color: var(--secondary-color);
+	transition: .2s all;
+}
+
+.text-link:hover {
+	color: var(--primary-color);
+}
+
+.text-tertiary {
+	color: var(--tertiary-color);
+}
+
+/* Additional css */
+.body-content {
+	min-height: calc(100vh - 153px);
+}
+
+.not-found {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 35px;
+}
+
+img.banner {
+	width: 100%;
+}
+
+.text-content {
+	margin-bottom: 36px;
+}
+
+.thumbnail {
+	width: 64px;
+	height: 64px;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.thumbnail img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+.caption {
+	width: 85%;
+	margin: 1rem auto;
+}
+
+.footer-section {
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
