@@ -18,7 +18,7 @@ var urlsToCache = [
 	'/images/news-thumbnail-1.jpeg',
 	'/images/news-thumbnail-2.jpeg',
 	'/images/news-thumbnail-3.jpeg',
-	'/images/product-1.png',
+	'/images/product-1.jpg',
 	'/images/product-2.png',
 	'/images/product-3.png',
 	'/images/product-4.png',
@@ -37,7 +37,8 @@ var urlsToCache = [
 	'/images/product-17.png',
 	'/images/product-18.png',
 	'/images/product-19.png',
-	'/images/product-20.png'
+	'/images/product-20.png',
+	'/manifest.json'
 ];
 
 self.addEventListener('install', function(event){
