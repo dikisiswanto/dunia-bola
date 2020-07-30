@@ -2,7 +2,7 @@
 	"name": "Dunia Bola",
 	"short_name": "Dunia Bola",
 	"description": "Website of DuniaBola PWA version",
-	"start_url": "/index.html",
+	"start_url": "./index.html",
 	"display": "standalone",
 	"background_color": "#ffffff",
   "theme_color": "#ffffff",
