@@ -12,5 +12,8 @@
     "football"
   ],
   "author": "Diki Siswanto",
-  "license": "LGPL-3.0"
+  "license": "LGPL-3.0",
+  "dependencies": {
+    "web-push": "^3.4.4"
+  }
 }
