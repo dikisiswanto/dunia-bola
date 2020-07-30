@@ -171,6 +171,7 @@ const getFavoritesView = (teams) => {
 	if (teams.length > 0) {
 		favorites = document.createElement('div');
 		teams.forEach(team => {
+			team = JSON.parse(JSON.stringify(team).replace(/http:/g, 'https:'));
 			const item = `<div class="z-depth-1 v-padding h-padding v-space">
 				<a href="#team-${team.id}" class="group-item">
 					<img src="${team.crestUrl}" alt="logo team" height="50px">
