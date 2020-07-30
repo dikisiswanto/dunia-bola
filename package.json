@@ -2,7 +2,7 @@
   "name": "mpwa-dicoding",
   "version": "1.0.0",
   "description": "MPWA Dicoding",
-  "main": "service-worker.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
