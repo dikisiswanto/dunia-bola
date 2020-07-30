@@ -1,44 +1,27 @@
-const CACHE_NAME = 'telkom-v2';
-var urlsToCache = [
+const CACHE_NAME = 'duniabola-v1';
+const urlsToCache = [
 	'/',
 	'/nav.html',
 	'/index.html',
 	'/pages/home.html',
-	'/pages/csr.html',
-	'/pages/contact.html',
-	'/pages/profile.html',
-	'/pages/services.html',
+	'/pages/team.html',
+	'/pages/favorites.html',
 	'/css/materialize.min.css',
-	'/css/style.css',
 	'/js/materialize.min.js',
-	'/js/script.js',
-	'/images/banner.jpg',
-	'/images/fav.ico',
-	'/images/logo.png',
-	'/images/news-thumbnail-1.jpeg',
-	'/images/news-thumbnail-2.jpeg',
-	'/images/news-thumbnail-3.jpeg',
-	'/images/product-1.jpg',
-	'/images/product-2.png',
-	'/images/product-3.png',
-	'/images/product-4.png',
-	'/images/product-5.png',
-	'/images/product-6.png',
-	'/images/product-7.png',
-	'/images/product-8.png',
-	'/images/product-9.png',
-	'/images/product-10.png',
-	'/images/product-11.png',
-	'/images/product-12.png',
-	'/images/product-13.png',
-	'/images/product-14.png',
-	'/images/product-15.png',
-	'/images/product-16.png',
-	'/images/product-17.png',
-	'/images/product-18.png',
-	'/images/product-19.png',
-	'/images/product-20.png',
-	'/manifest.json',
+	'/js/api.js',
+	'/js/lib.js',
+	'/js/constants.js',
+	'/js/idb.js',
+	'/js/db.js',
+	'/js/view.js',
+	'/js/main.js',
+	'/css/style.css',
+	'/css/icons.css',
+	'/fonts/Material-Icons.woff2',
+	'/images/epl-logo.png',
+	'/images/laliga-logo.png',
+	'/images/ucl-logo.png',
+	'/images/logo.ico',
 	'/icons/icon-72x72.png',
 	'/icons/icon-96x96.png',
 	'/icons/icon-128x128.png',
@@ -46,25 +29,26 @@ var urlsToCache = [
 	'/icons/icon-152x152.png',
 	'/icons/icon-192x192.png',
 	'/icons/icon-384x384.png',
-	'/icons/icon-512x512.png'
+	'/icons/icon-512x512.png',
+	'/manifest.json'
 ];
 
-self.addEventListener('install', function(event){
+self.addEventListener('install', event => {
 	event.waitUntil(
 		caches.open(CACHE_NAME)
-		.then(function(cache) {
+		.then(cache => {
 			return cache.addAll(urlsToCache);
 		})
 	);
 })
 
-self.addEventListener('activate', function(event){
+self.addEventListener('activate', event => {
 	event.waitUntil(
 		caches.keys()
-		.then(function(cacheNames) {
+		.then(cacheNames => {
 			return Promise.all(
-				cacheNames.map(function(cacheName){
-					if(cacheName != CACHE_NAME){	
+				cacheNames.map(cacheName => {
+					if (cacheName != CACHE_NAME) {
 						console.log("ServiceWorker: cache " + cacheName + " dihapus");
 						return caches.delete(cacheName);
 					}
@@ -74,18 +58,54 @@ self.addEventListener('activate', function(event){
 	);
 })
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', event => {
 	event.respondWith(
-		caches.match(event.request, {cacheName:CACHE_NAME})
-		.then(function(response) {
-			if(response){
-				console.log("ServiceWorker: Gunakan aset dari cache: ", response.url);
+		caches.match(event.request, {
+			cacheName: CACHE_NAME
+		})
+		.then(response => {
+			if (response) {
 				return response;
 			}
-			
-			console.log("ServiceWorker: Memuat aset dari server: ", event.request.url);
-			return fetch(event.request);
+			const fetchRequest = event.request.clone();
+
+			return fetch(fetchRequest).then(
+				response => {
+					if (!response || response.status !== 200) {
+						return response;
+					}
+					const responseToCache = response.clone();
+					caches.open(CACHE_NAME)
+						.then(cache => {
+							cache.put(event.request, responseToCache);
+						});
+					return response;
+				}
+			);
 		})
 	);
 });
 
+self.addEventListener('push', event => {
+	let body;
+
+	if (event.data) {
+		body = event.data.text();
+	} else {
+		body = 'No payload';
+	}
+
+	const options = {
+		body,
+		icon: './icons/icon-96x96.png',
+		vibrate: [100, 50, 100],
+		data: {
+			dateOfArrival: Date.now(),
+			primaryKey: 1,
+		}
+	};
+
+	event.waitUntil(
+		self.registration.showNotification('Push Notification', options)
+	);
+});

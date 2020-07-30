@@ -3,18 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Website copy of Telkom Indonesia</title>
-	<link rel="shortcut icon" href="./images/fav.ico" type="image/x-icon">
+	<title>DuniaBola - Berita and info terkini seputar sepakbola dunia</title>
+	<meta name="theme_color" content="#ffffff">
+	<link rel="shortcut icon" href="./images/logo.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/assets/images/icons/icon-192x192.png">
 	<link rel="stylesheet" href="./css/materialize.min.css">
+	<link rel="stylesheet" href="./css/icons.css">
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="manifest" href="./manifest.json">
 </head>
 <body>
 	<div class="navbar-fixed z-index-top">
-		<nav class="white z-depth-1" role="navigation">
+		<nav class="primary-bg z-depth-1" role="navigation">
 			<div class="nav-wrapper container">
-				<a id="logo-container" href="#" class="brand-logo"><img src="./images/logo.png" alt="Logo Telkom Indonesia" srcset=""></a>
-				<a href="#" data-target="nav-mobile" class="sidenav-trigger blue-grey-text text-darken-4">&#9776;</a>
+				<a href="#home" class="text-bold text-large">DuniaBola</a>
+				<a href="#" data-target="nav-mobile" class="sidenav-trigger">&#9776;</a>
 	
 				<ul class="topnav right hide-on-med-and-down"></ul>
 				<ul id="nav-mobile" class="sidenav"></ul>
@@ -23,31 +26,33 @@
 	</div>
 	
 	<div class="body-content">
+		<div class="preloader-wrapper big active">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div><div class="gap-patch">
+					<div class="circle"></div>
+				</div><div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<footer class="grey lighten-2 footer-section">
 		<div class="container text-small center-align">
-			<span>© 2020 PT Telkom Indonesia (Persero) Tbk. Hak Cipta Dilindungi Undang-Undang.</span>
+			<span>© 2020 DuniaBola</span>
 		</div>
 	</footer>
 
   <script src="./js/materialize.min.js"></script>
-  <script src="./js/script.js"></script>
-  <script>
-  // REGISTER SERVICE WORKER
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('./service-worker.js')
-      .then(function() {
-        console.log('Pendaftaran ServiceWorker berhasil');
-      })
-      .catch(function(){
-        console.log('Pendaftaran ServiceWorker gagal');
-      });
-    })
-  } else {
-    console.log("ServiceWorker belum didukung browser ini.")
-  }
-  </script>
+  <script src="./js/lib.js"></script>
+  <script src="./js/constants.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/idb.js"></script>
+  <script src="./js/db.js"></script>
+  <script src="./js/view.js"></script>
+	<script src="./js/main.js"></script>
+	<script src="./js/register-service-worker.js"></script>
 </body>
 </html>

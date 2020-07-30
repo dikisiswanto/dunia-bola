@@ -1,8 +1,31 @@
 /* Corporate color */
 :root {
-	--primary-color: #e42313;
-	--secondary-color: #1d1d1b;
-	--tertiary-color: #706f6f;
+	--primary-color: #2a781e;
+	--ucl-color: #041038;
+	--epl-color: #37003c;
+	--laliga-color: #003472;
+	--secondary-color: #555;
+	--tertiary-color: #eee;
+}
+
+.primary-bg {
+	background-color: var(--primary-color);
+}
+
+#ucl {
+	--primary-color: var(--ucl-color);
+}
+
+#epl {
+	--primary-color: var(--epl-color);
+}
+
+#laliga {
+	--primary-color: var(--laliga-color);
+}
+
+.nav-link {
+	color: #efefef;
 }
 
 /* Spacing */
@@ -11,9 +34,28 @@
 	margin-bottom: 2rem;
 }
 
+.h-space {
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
+
+.h-padding {
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+
+.v-padding {
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+}
+
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.left-align {
+	text-align: left;
 }
 
 /* Z utilities */
@@ -26,6 +68,10 @@
 }
 
 /* Additional text utilities */
+.text-center {
+	text-align: center;
+}
+
 .text-semibold {
 	font-weight: 500;
 }
@@ -54,6 +100,10 @@
 	font-size: 1.5rem;
 }
 
+.text-xlarge {
+	font-size: 2rem;
+}
+
 .text-small {
 	font-size: .9rem;
 }
@@ -67,8 +117,12 @@
 	color: var(--primary-color);
 }
 
-.text-tertiary {
-	color: var(--tertiary-color);
+.text-secondary {
+	color: var(--secondary-color);
+}
+
+.text-primary {
+	color: var(--primary-color) !important;
 }
 
 /* Additional css */
@@ -112,4 +166,27 @@ img.banner {
 .footer-section {
 	padding-top: 16px;
 	padding-bottom: 16px;
+}
+
+.spinner-primary {
+	border-color: var(--primary-color);
+}
+
+.img-thumbnail {
+	height: 30px;
+}
+
+.no-rounded {
+	border-radius: 0 !important;
+}
+
+.heading-group {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.group-item {
+	display: flex;
+	align-items: center;
 }

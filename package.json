@@ -1,0 +1,16 @@
+{
+  "name": "mpwa-dicoding",
+  "version": "1.0.0",
+  "description": "MPWA Dicoding",
+  "main": "service-worker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mpwa",
+    "dicoding",
+    "football"
+  ],
+  "author": "Diki Siswanto",
+  "license": "LGPL-3.0"
+}
