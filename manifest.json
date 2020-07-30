@@ -1,14 +1,14 @@
 {
-	"name": "Dunia Bola",
-	"short_name": "Dunia Bola",
-	"description": "Website of DuniaBola PWA version",
-	"start_url": "./index.html",
-	"display": "standalone",
-	"background_color": "#ffffff",
+  "name": "Dunia Bola",
+  "short_name": "Dunia Bola",
+  "description": "Website of DuniaBola PWA version",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "gcm_sender_id": "833875990910",
-	"icons": [
-		{
+  "icons": [
+    {
       "src": "./icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png"
