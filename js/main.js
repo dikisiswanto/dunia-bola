@@ -2,7 +2,9 @@ const api = new ApiService();
 const db = new DatabaseService();
 const lib = new Lib();
 
-(async () => {await db.init()})();
+(async () => {
+	await db.init()
+})();
 
 document.addEventListener('DOMContentLoaded', function () {
 	const sidenav = document.querySelector('.sidenav');
@@ -141,10 +143,14 @@ const toggleFavorite = async (state, team) => {
 	let isSuccess;
 	if (state) {
 		isSuccess = await db.deleteTeam(parseInt(team.id));
-		M.toast({html: `${team.shortName} removed from favorite`});
+		M.toast({
+			html: `${team.shortName} removed from favorite`
+		});
 	} else {
 		isSuccess = await db.insertTeam(team);
-    M.toast({html: `${team.shortName} added to favorite`});
+		M.toast({
+			html: `${team.shortName} added to favorite`
+		});
 	}
 	return isSuccess;
 }
@@ -174,33 +180,33 @@ const show404 = (error) => {
 
 const requestNotificationPermission = async () => {
 	if ('Notification' in window) {
-    const result = await Notification.requestPermission();
+		const result = await Notification.requestPermission();
 
-    if (result === 'denied') {
-      console.log('Fitur notifikasi tidak diijinkan.');
-      return;
-    } else if (result === 'default') {
-      console.error('Pengguna menutup kotak dialog permintaan ijin.');
-      return;
-    }
+		if (result === 'denied') {
+			console.log('Fitur notifikasi tidak diijinkan.');
+			return;
+		} else if (result === 'default') {
+			console.error('Pengguna menutup kotak dialog permintaan ijin.');
+			return;
+		}
 
-    if (('PushManager' in window)) {
+		if (('PushManager' in window)) {
 			const registration = await navigator.serviceWorker.getRegistration();
 
-      try {
-        const subscription = await registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: lib.urlBase64ToUint8Array('BLUHZeOAUDWIEe6mYPUJVozftbvThcUcarIZB5n0L7QbSwFGNFjQbQ9irMCnWq9sr-N_iw5vp1ZJnBsy51sESks')
-        });
+			try {
+				const subscription = await registration.pushManager.subscribe({
+					userVisibleOnly: true,
+					applicationServerKey: lib.urlBase64ToUint8Array('BLUHZeOAUDWIEe6mYPUJVozftbvThcUcarIZB5n0L7QbSwFGNFjQbQ9irMCnWq9sr-N_iw5vp1ZJnBsy51sESks')
+				});
 
-        console.log('Endpoint: ', subscription.endpoint);
-        console.log('p256dh key: ', btoa(String.fromCharCode.apply(
-            null, new Uint8Array(subscription.getKey('p256dh')))));
-        console.log('auth key: ', btoa(String.fromCharCode.apply(
-            null, new Uint8Array(subscription.getKey('auth')))));
-      } catch (error) {
-        console.log('Tidak dapat melakukan subscribe ', error.message);
-      }
-    }
-  }
+				console.log('Endpoint: ', subscription.endpoint);
+				console.log('p256dh key: ', btoa(String.fromCharCode.apply(
+					null, new Uint8Array(subscription.getKey('p256dh')))));
+				console.log('auth key: ', btoa(String.fromCharCode.apply(
+					null, new Uint8Array(subscription.getKey('auth')))));
+			} catch (error) {
+				console.log('Tidak dapat melakukan subscribe ', error.message);
+			}
+		}
+	}
 }
