@@ -6,7 +6,7 @@ class ApiService {
 			}
 		};
 		try {
-			const response = await fetch(url, options);
+			const response = await fetch(API_BASE_URL + url, options);
 			if (response.ok) {
 				return await response.json();
 			} else {
@@ -23,47 +23,12 @@ class ApiService {
 	}
 
 	async getStanding(leagueId) {
-		const endpoint = API_BASE_URL + `competitions/${leagueId}/standings`;
-		if (await this.isCached(endpoint)) {
-			return await this.getCache(endpoint)
-		}
+		const endpoint = `competitions/${leagueId}/standings`;
 		return await this.fetchApi(endpoint);
 	}
 
 	async getTeam(teamId) {
-		const endpoint = API_BASE_URL + `teams/${teamId}`;
-		if (await this.isCached(endpoint)) {
-			return await this.getCache(endpoint)
-		}
+		const endpoint = `teams/${teamId}`;
 		return await this.fetchApi(endpoint);
-	}
-
-	async isCached(endpoint) {
-		if ('caches' in window) {
-			try {
-				const response = await caches.match(endpoint);
-				if (response) {
-					return true;
-				}
-			} catch (error) {
-				throw error;
-			}
-		}
-		return false;
-	}
-
-	async getCache(endpoint) {
-		if ('caches' in window) {
-			try {
-				const response = await caches.match(endpoint);
-				if (response) {
-					const responseJson = await response.json();
-					return responseJson;
-				}
-			} catch (error) {
-				throw error;
-			}
-		}
-		return [];
 	}
 }

@@ -1,90 +1,52 @@
-const CACHE_NAME = 'duniabola-v1';
-const urlsToCache = [
-	'./',
-	'./nav.html',
-	'./index.html',
-	'./pages/home.html',
-	'./pages/team.html',
-	'./pages/favorites.html',
-	'./css/materialize.min.css',
-	'./js/materialize.min.js',
-	'./js/api.js',
-	'./js/lib.js',
-	'./js/constants.js',
-	'./js/idb.js',
-	'./js/db.js',
-	'./js/view.js',
-	'./js/main.js',
-	'./css/style.css',
-	'./css/icons.css',
-	'./fonts/Material-Icons.woff2',
-	'./images/epl-logo.png',
-	'./images/laliga-logo.png',
-	'./images/ucl-logo.png',
-	'./images/logo.ico',
-	'./icons/icon-72x72.png',
-	'./icons/icon-96x96.png',
-	'./icons/icon-128x128.png',
-	'./icons/icon-144x144.png',
-	'./icons/icon-152x152.png',
-	'./icons/icon-192x192.png',
-	'./icons/icon-384x384.png',
-	'./icons/icon-512x512.png',
-	'./manifest.json'
-];
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
 
-self.addEventListener('install', event => {
-	event.waitUntil(
-		caches.open(CACHE_NAME)
-		.then(cache => {
-			return cache.addAll(urlsToCache);
-		})
-	);
-})
+if (workbox) {
+	console.log('Berhasil memuat Workbox');
+} else {
+	console.log('Workbox gagal dimuat!');
+}
 
-self.addEventListener('activate', event => {
-	event.waitUntil(
-		caches.keys()
-		.then(cacheNames => {
-			return Promise.all(
-				cacheNames.map(cacheName => {
-					if (cacheName != CACHE_NAME) {
-						console.log("ServiceWorker: cache " + cacheName + " dihapus");
-						return caches.delete(cacheName);
-					}
-				})
-			);
-		})
-	);
-})
-
-self.addEventListener('fetch', event => {
-	event.respondWith(
-		caches.match(event.request, {
-			cacheName: CACHE_NAME
-		})
-		.then(response => {
-			if (response) {
-				return response;
-			}
-			const fetchRequest = event.request.clone();
-
-			return fetch(fetchRequest).then(
-				response => {
-					if (!response || response.status !== 200) {
-						return response;
-					}
-					const responseToCache = response.clone();
-					caches.open(CACHE_NAME)
-						.then(cache => {
-							cache.put(event.request, responseToCache);
-						});
-					return response;
-				}
-			);
-		})
-	);
+workbox.core.setCacheNameDetails({
+	prefix: 'dunia-bola',
+	suffix: 'v1',
+	precache: 'app',
+	runtime: 'external'
 });
+
+function mappingResource(path, files) {
+	return files.map(fileName => {
+		const resource = {
+			url: path + fileName,
+			revision: 1
+		};
+		return resource;
+	})
+}
+
+const baseResources = ['index.html', 'manifest.json'];
+const pages = ['home.html', 'league.html', 'team.html', 'favorites.html'];
+const styles = ['style.css', 'materialize.min.css', 'icons.css'];
+const fonts = ['Material-Icons.woff2'];
+const scripts = ['api.js', 'constants.js', 'db.js', 'idb.js', 'lib.js', 'main.js', 'materialize.min.js', 'register-service-worker.js', 'view.js'];
+const icons = ['icon-72x72.png', 'icon-96x96.png', 'icon-128x128.png', 'icon-144x144.png', 'icon-384x384.png', 'icon-512x512.png'];
+const images = ['epl-logo.png', 'laliga-log.png', 'ucl-logo.png', 'logo.ico'];
+
+workbox.precaching.precacheAndRoute([
+	mappingResource('./', baseResources),
+	mappingResource('./pages/', pages),
+	mappingResource('./css/', styles),
+	mappingResource('./fonts/', fonts),
+	mappingResource('./js/', scripts),
+	mappingResource('./icons/', icons),
+	mappingResource('./images/', images)
+].flat());
+
+workbox.routing.registerRoute(
+	/^https:\/\/api\.football-data\.org\/v2/,
+	workbox.strategies.staleWhileRevalidate({
+		cacheName: `${workbox.core.cacheNames.runtime}-api-response`
+	})
+);
 
 self.addEventListener('push', event => {
 	let body;
