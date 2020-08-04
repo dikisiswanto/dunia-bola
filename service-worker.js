@@ -23,7 +23,7 @@ function mappingResource(path, files) {
 	})
 }
 
-const baseResources = ['index.html', 'manifest.json'];
+const baseResources = ['index.html', 'nav.html', 'manifest.json'];
 const pages = ['home.html', 'league.html', 'team.html', 'favorites.html'];
 const styles = ['style.css', 'materialize.min.css', 'icons.css'];
 const fonts = ['Material-Icons.woff2'];
