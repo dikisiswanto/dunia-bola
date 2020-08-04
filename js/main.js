@@ -157,7 +157,10 @@ const toggleFavorite = async (state, team) => {
 
 const updateColorScheme = (id) => {
 	const body = document.querySelector('body');
-	body.id = LEAGUES.filter(item => item.id == id).map(item => item.code);
+	const metaTheme = document.querySelector('meta[name=theme-color]');
+	const themeColor = LEAGUES.filter(item => item.id == id).map(item => item.themeColor)[0] || defaultThemeColor;
+	body.id = LEAGUES.filter(item => item.id == id).map(item => item.code)[0];
+	metaTheme.content =  themeColor;
 }
 
 const updatePage = () => {

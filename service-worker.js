@@ -28,7 +28,7 @@ const pages = ['home.html', 'league.html', 'team.html', 'favorites.html'];
 const styles = ['style.css', 'materialize.min.css', 'icons.css'];
 const fonts = ['Material-Icons.woff2'];
 const scripts = ['api.js', 'constants.js', 'db.js', 'idb.js', 'lib.js', 'main.js', 'materialize.min.js', 'register-service-worker.js', 'view.js'];
-const icons = ['icon-72x72.png', 'icon-96x96.png', 'icon-128x128.png', 'icon-144x144.png', 'icon-384x384.png', 'icon-512x512.png'];
+const icons = ['icon-72x72.png', 'icon-96x96.png', 'icon-128x128.png', 'icon-144x144.png', 'icon-152x152.png', 'icon-192x192.png', 'icon-384x384.png', 'icon-512x512.png'];
 const images = ['epl-logo.png', 'laliga-log.png', 'ucl-logo.png', 'logo.ico'];
 
 workbox.precaching.precacheAndRoute([
