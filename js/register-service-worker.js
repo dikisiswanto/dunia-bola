@@ -2,11 +2,11 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', async () => {
     try {
       await navigator.serviceWorker.register('./service-worker.js');
-      console.log('Pendaftaran serviceWorker berhasil');
+      console.log('ServiceWorker registration succeed');
     } catch (e) {
-      console.log('Pendaftaran serviceWorker gagal');
+      console.log('ServiceWorker registration failed');
     }
   });
 } else {
-  console.log('ServiceWorker tidak didukung');
+  console.log('ServiceWorker is not supported');
 }

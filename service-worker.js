@@ -1,26 +1,26 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
 
 if (workbox) {
-	console.log('Berhasil memuat Workbox');
+  console.log('Berhasil memuat Workbox');
 } else {
-	console.log('Workbox gagal dimuat!');
+  console.log('Workbox gagal dimuat!');
 }
 
 workbox.core.setCacheNameDetails({
-	prefix: 'dunia-bola',
-	suffix: 'v1',
-	precache: 'app',
-	runtime: 'external'
+  prefix: 'dunia-bola',
+  suffix: 'v1',
+  precache: 'app',
+  runtime: 'external'
 });
 
 function mappingResource(path, files) {
-	return files.map(fileName => {
-		const resource = {
-			url: path + fileName,
-			revision: 1
-		};
-		return resource;
-	})
+  return files.map(fileName => {
+    const resource = {
+      url: path + fileName,
+      revision: 1
+    };
+    return resource;
+  })
 }
 
 const baseResources = ['index.html', 'nav.html', 'manifest.json'];
@@ -32,42 +32,42 @@ const icons = ['icon-72x72.png', 'icon-96x96.png', 'icon-128x128.png', 'icon-144
 const images = ['epl-logo.png', 'laliga-logo.png', 'ucl-logo.png', 'logo.ico'];
 
 workbox.precaching.precacheAndRoute([
-	mappingResource('./', baseResources),
-	mappingResource('./pages/', pages),
-	mappingResource('./css/', styles),
-	mappingResource('./fonts/', fonts),
-	mappingResource('./js/', scripts),
-	mappingResource('./icons/', icons),
-	mappingResource('./images/', images)
+  mappingResource('./', baseResources),
+  mappingResource('./pages/', pages),
+  mappingResource('./css/', styles),
+  mappingResource('./fonts/', fonts),
+  mappingResource('./js/', scripts),
+  mappingResource('./icons/', icons),
+  mappingResource('./images/', images)
 ].flat());
 
 workbox.routing.registerRoute(
-	/^https:\/\/api\.football-data\.org\/v2/,
-	workbox.strategies.staleWhileRevalidate({
-		cacheName: `${workbox.core.cacheNames.runtime}-api-response`
-	})
+  /^https:\/\/api\.football-data\.org\/v2/,
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: `${workbox.core.cacheNames.runtime}-api-response`
+  })
 );
 
 self.addEventListener('push', event => {
-	let body;
+  let body;
 
-	if (event.data) {
-		body = event.data.text();
-	} else {
-		body = 'No payload';
-	}
+  if (event.data) {
+    body = event.data.text();
+  } else {
+    body = 'No payload';
+  }
 
-	const options = {
-		body,
-		icon: './icons/icon-96x96.png',
-		vibrate: [100, 50, 100],
-		data: {
-			dateOfArrival: Date.now(),
-			primaryKey: 1,
-		}
-	};
+  const options = {
+    body,
+    icon: './icons/icon-96x96.png',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: 1,
+    }
+  };
 
-	event.waitUntil(
-		self.registration.showNotification('Push Notification', options)
-	);
+  event.waitUntil(
+    self.registration.showNotification('Push Notification', options)
+  );
 });

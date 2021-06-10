@@ -1,192 +1,192 @@
 /* Theme color */
 :root {
-	--primary-color: #2a781e;
-	--ucl-color: #041038;
-	--epl-color: #37003c;
-	--laliga-color: #003472;
-	--secondary-color: #555;
-	--tertiary-color: #eee;
+  --primary-color: #2a781e;
+  --ucl-color: #041038;
+  --epl-color: #37003c;
+  --laliga-color: #003472;
+  --secondary-color: #555;
+  --tertiary-color: #eee;
 }
 
 .primary-bg {
-	background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 #ucl {
-	--primary-color: var(--ucl-color);
+  --primary-color: var(--ucl-color);
 }
 
 #epl {
-	--primary-color: var(--epl-color);
+  --primary-color: var(--epl-color);
 }
 
 #laliga {
-	--primary-color: var(--laliga-color);
+  --primary-color: var(--laliga-color);
 }
 
 .nav-link {
-	color: #efefef;
+  color: #efefef;
 }
 
 /* Spacing */
 .v-space {
-	margin-top: 2rem;
-	margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .h-space {
-	margin-left: 2rem;
-	margin-right: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .h-padding {
-	padding-left: 2rem;
-	padding-right: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .v-padding {
-	padding-top: 2rem;
-	padding-bottom: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .mx-auto {
-	margin-left: auto;
-	margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .left-align {
-	text-align: left;
+  text-align: left;
 }
 
 /* Z utilities */
 .z-index-top {
-	z-index: 999;
+  z-index: 999;
 }
 
 .z-depth-light {
-	box-shadow: 0 0px 5px rgba(9, 9, 9, .25);
+  box-shadow: 0 0px 5px rgba(9, 9, 9, .25);
 }
 
 /* Additional text utilities */
 .text-center {
-	text-align: center;
+  text-align: center;
 }
 
 .text-semibold {
-	font-weight: 500;
+  font-weight: 500;
 }
 
 .text-bold {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .text-heading {
-	color: var(--primary-color);
-	font-size: 1.5rem;
-	font-weight: bold;
-	padding-bottom: 20px;
-	border-bottom: 2px solid var(--tertiary-color);
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--tertiary-color);
 }
 
 .text-base {
-	font-size: 1rem;
+  font-size: 1rem;
 }
 
 .text-medium {
-	font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .text-large {
-	font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .text-xlarge {
-	font-size: 2rem;
+  font-size: 2rem;
 }
 
 .text-small {
-	font-size: .9rem;
+  font-size: .9rem;
 }
 
 .text-link {
-	color: var(--secondary-color);
-	transition: .2s all;
+  color: var(--secondary-color);
+  transition: .2s all;
 }
 
 .text-link:hover {
-	color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .text-secondary {
-	color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .text-primary {
-	color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
 }
 
 /* Additional css */
 .body-content {
-	min-height: calc(100vh - 153px);
+  min-height: calc(100vh - 153px);
 }
 
 .not-found {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 35px;
 }
 
 img.banner {
-	width: 100%;
+  width: 100%;
 }
 
 .text-content {
-	margin-bottom: 36px;
+  margin-bottom: 36px;
 }
 
 .thumbnail {
-	width: 64px;
-	height: 64px;
-	border-radius: 8px;
-	overflow: hidden;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .thumbnail img {
-	height: 100%;
-	width: 100%;
-	object-fit: contain;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .caption {
-	width: 85%;
-	margin: 1rem auto;
+  width: 85%;
+  margin: 1rem auto;
 }
 
 .footer-section {
-	padding-top: 16px;
-	padding-bottom: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .spinner-primary {
-	border-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .img-thumbnail {
-	height: 30px;
+  height: 30px;
 }
 
 .no-rounded {
-	border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 
 .heading-group {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .group-item {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
